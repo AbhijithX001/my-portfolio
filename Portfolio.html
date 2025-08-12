@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portfolio website of Abhijith P, MERN Stack Developer." />
+    <meta name="theme-color" content="#080808" />
+    <title>Portfolio Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="Portfolio.css" />
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header">
+        <a href="#home" class="logo">Abhijith <span>P</span></a>
+        <button id="menu-icon" class="bx bx-menu" aria-label="Toggle menu" aria-expanded="false"></button>
+        <nav class="navbar" aria-label="Primary">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a class="gradient-btn" href="#contact">Contact Me</a>
+    </header>
+    <main id="main">
+        <section class="home" id="home">
+            <div class="home-content">
+                <h1>Hi, I’m <span>Abhijith</span></h1>
+                <h3>Full Stack Developer</h3>
+                <p>I develop scalable, high-performance web apps using the MERN stack, and leverage Python for DSA, data science, and AI/ML projects.</p>
+                <div class="social-icons">
+                    <a href="https://github.com/AbhijithX001" target="_blank"><i class="bx bxl-github"></i></a>
+                    <a href="https://www.linkedin.com/in/abhijith-p11" target="_blank"><i class="bx bxl-linkedin"></i></a>
+                    <a href="https://www.instagram.com/_abhi_gth/" target="_blank"><i class="bx bxl-instagram-alt"></i></a>
+                    <a href="mailto:abhijith26p@gmail"><i class="bx bx-envelope"></i></a>
+                </div>
+                <div class="btn-group">
+                    <a href="https://github.com/AbhijithX001/portfolio-assets/raw/main/Abhijith-P-Resume.pdf" class="btn" target="_blank">My Resume</a>
+                    <a href="#contact" class="btn">Contact</a>
+                </div>
+            </div>
+            <div class="home-img">
+                <img src="abhijith1.png" alt="Portrait of Abhijith" loading="lazy">
+            </div>
+        </section>
+        <section class="about" id="about">
+            <div class="about-img">
+                <img src="aboutme5.png" alt="About image of Abhijith" loading="lazy">
+            </div>
+            <div class="about-content">
+                <h2>About <span>Me</span></h2>
+                <p>I’m a Computer Science student experienced in full-stack development with MERN and backend services in Python. I also work on data pipelines, analytics, and AI/ML applications.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </section>
+        <section class="services" id="services">
+            <h2 class="heading">Services</h2>
+            <div class="services-container">
+                <div class="service-box">
+                    <div class="service-info">
+                        <i class="bx bx-code"></i>
+                        <h4>Frontend Development</h4>
+                        <p>Responsive interfaces with HTML, CSS, JavaScript, and React.</p>
+                    </div>
+                </div>
+                <div class="service-box">
+                    <div class="service-info">
+                        <i class="bx bx-server"></i>
+                        <h4>Backend Development</h4>
+                        <p>Secure APIs and server apps using Node.js, Express, and Python.</p>
+                    </div>
+                </div>
+                <div class="service-box">
+                    <div class="service-info">
+                        <i class="bx bxl-python"></i>
+                        <h4>Data & AI</h4>
+                        <p>Data pipelines, analytics, and AI/ML model development.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="projects" id="projects">
+            <h2 class="heading">Projects</h2>
+            <div class="projects-box">
+                <div class="project-card">
+                    <img src="halo-cme.jpg" alt="Halo CME Detection Pipeline" loading="lazy">
+                    <h3>Halo CME Detection Pipeline</h3>
+                    <p>Python pipeline for ISRO’s Aditya-L1 data, with anomaly detection (>90% recall).</p>
+                    <a href="https://github.com/AbhijithX001/HALO-CME-Project-Solar-Storm-Detection-Mission" target="_blank" class="btn">Review Project</a>
+
+            </div>
+<div class="project-card">
+    <img src="weather.png" alt="Weather App" loading="lazy">
+    <h3>Weather App</h3>
+    <p>Weather app using OpenWeatherMap API, with dynamic UI and unit conversion.</p>
+    <a href="https://github.com/AbhijithX001/Weather-App" target="_blank" class="btn">Review Project</a>
+                </div>
+            </div>
+        </section>
+        <section class="contact" id="contact">
+            <h2 class="heading">Contact <span>Me</span></h2>
+            <p>Open to MERN stack, Python, and AI/ML projects — let’s connect.</p>
+            <form action="https://formspree.io/f/mdkdbajo" method="POST">
+                <div class="input-group">
+                    <div class="input-box">
+                        <input id="name" name="name" type="text" placeholder="Full Name" required>
+                        <input id="email" name="email" type="email" placeholder="Email" required>
+                    </div>
+                    <div class="input-box">
+                        <input id="phone" name="phone" type="tel" placeholder="Phone Number">
+                        <input id="subject" name="subject" type="text" placeholder="Subject">
+                    </div>
+                </div>
+                <div class="input-group-2">
+                    <textarea id="message" name="message" placeholder="Your Message" cols="30" rows="10" required></textarea>
+                    <input type="submit" value="Send Message" class="btn">
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://github.com/AbhijithX001" target="_blank"><i class="bx bxl-github"></i></a>
+            <a href="https://www.linkedin.com/in/abhijith-p11" target="_blank"><i class="bx bxl-linkedin"></i></a>
+            <a href="https://www.instagram.com/_abhi_gth/" target="_blank"><i class="bx bxl-instagram-alt"></i></a>
+            <a href="mailto:abhijith26p@gmail.com?subject=Project%20Inquiry&body=Hi%20Abhijith,%0D%0A%0D%0AI%20would%20like%20to%20discuss%20a%20project%20with%20you."><i class="bx bx-envelope"></i></a>
+        </div>
+        <ul class="list">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="copyright">&copy; 2025 Abhijith P | All Rights Reserved</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
