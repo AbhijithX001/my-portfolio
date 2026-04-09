@@ -1,10 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-# Vercel by default uses a virtual environment for Python builds.
-# Let's ensure pip is up to date and we install dependencies.
-python3 -m pip install -r requirements.txt
-
 # Bundle static files for Whitenoise to serve
 python3 manage.py collectstatic --noinput --clear
 
