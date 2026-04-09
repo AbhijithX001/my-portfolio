@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "installCommand": "python3 -m pip install -r requirements.txt",
   "buildCommand": "bash build_files.sh",
   "rewrites": [
     {
