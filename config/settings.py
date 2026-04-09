@@ -32,8 +32,8 @@ DEBUG = os.environ.get("DEBUG", "true").lower() in ("1", "true", "yes", "on")
 if DEBUG:
     allowed_hosts_default = "localhost,127.0.0.1,[::1]"
 else:
-    # In production, require explicit hosts (e.g. "myapp.vercel.app,mydomain.com")
-    allowed_hosts_default = ""
+    # Safer default for Vercel if ALLOWED_HOSTS is not explicitly set.
+    allowed_hosts_default = ".vercel.app"
 ALLOWED_HOSTS = [
     h.strip() for h in os.environ.get("ALLOWED_HOSTS", allowed_hosts_default).split(",") if h.strip()
 ]
