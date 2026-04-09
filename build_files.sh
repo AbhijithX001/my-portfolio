@@ -7,8 +7,8 @@ if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
 fi
 
 # Diagnostic: Check if Postgres driver is available
-echo "Checking Postgres driver (psycopg2)..."
-"$PYTHON_BIN" -c "try: import psycopg2; print('psycopg2 found version:', psycopg2.__version__); except Exception as e: print('psycopg2 import failed:', e)" || true
+echo "Checking Postgres driver (psycopg v3)..."
+"$PYTHON_BIN" -c "try: import psycopg; print('psycopg (v3) found version:', psycopg.__version__); except Exception as e: print('psycopg (v3) import failed:', e)" || true
 
 # Bundle static files for Whitenoise to serve
 "$PYTHON_BIN" manage.py collectstatic --noinput --clear
