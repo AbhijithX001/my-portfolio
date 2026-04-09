@@ -1,4 +1,12 @@
+import os
 from django.db import models
+
+def get_raw_storage():
+    if "CLOUDINARY_URL" in os.environ:
+        from cloudinary_storage.storage import RawMediaCloudinaryStorage
+        return RawMediaCloudinaryStorage()
+    from django.core.files.storage import default_storage
+    return default_storage
 
 SOCIAL_PLATFORM_CHOICES = [
     ("github", "GitHub"),
@@ -55,7 +63,7 @@ class SocialMedia(models.Model):
 
 
 class Resume(models.Model):
-    file = models.FileField(upload_to="resumes/")
+    file = models.FileField(upload_to="resumes/", storage=get_raw_storage)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
