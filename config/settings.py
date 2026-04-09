@@ -163,6 +163,14 @@ STORAGES = {
 
 # Cloudinary for user uploads (persistent on Vercel) when configured.
 if os.environ.get("CLOUDINARY_URL"):
+    import cloudinary
+    cloudinary.config(secure=True)
+
+    # Register cloudinary_storage only when Cloudinary is actually available.
+    # Keeping it out of INSTALLED_APPS during build prevents the custom
+    # collectstatic override from running without valid credentials.
+    INSTALLED_APPS.append('cloudinary_storage')
+
     STORAGES["default"] = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     }

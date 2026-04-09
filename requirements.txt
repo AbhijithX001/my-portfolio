@@ -5,5 +5,5 @@ psycopg[binary]==3.2.13
 sqlparse==0.5.5
 typing_extensions==4.15.0
 whitenoise==6.12.0
-cloudinary
-django-cloudinary-storage
+cloudinary==1.41.0
+django-cloudinary-storage==0.3.0
