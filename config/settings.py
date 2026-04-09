@@ -29,7 +29,14 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "true").lower() in ("1", "true", "yes", "on")
 
-ALLOWED_HOSTS = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "*").split(",") if h.strip()]
+if DEBUG:
+    allowed_hosts_default = "localhost,127.0.0.1,[::1]"
+else:
+    # In production, require explicit hosts (e.g. "myapp.vercel.app,mydomain.com")
+    allowed_hosts_default = ""
+ALLOWED_HOSTS = [
+    h.strip() for h in os.environ.get("ALLOWED_HOSTS", allowed_hosts_default).split(",") if h.strip()
+]
 
 
 # Application definition
@@ -40,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     'app',
@@ -80,13 +86,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-import dj_database_url
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if DATABASE_URL:
+    import dj_database_url
 
-DATABASES = {
-    'default': dj_database_url.parse(
-        os.getenv("DATABASE_URL", "sqlite:///db.sqlite3")
-    )
-}
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=not DEBUG,
+        )
+    }
+else:
+    # Local/dev fallback. Note: on Vercel this file won't be durable.
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 # Password validation
@@ -126,9 +144,25 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+# Backward-compat for packages that still look for this setting.
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-if "CLOUDINARY_URL" in os.environ:
-    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+# Whitenoise best-practice storage backend for versioned static assets.
+# Django 4.2+ uses STORAGES; keeping it explicit avoids relying on defaults.
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    }
+}
+
+# Cloudinary for user uploads (persistent on Vercel) when configured.
+if os.environ.get("CLOUDINARY_URL"):
+    STORAGES["default"] = {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    }

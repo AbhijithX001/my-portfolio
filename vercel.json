@@ -1,10 +1,15 @@
 {
   "version": 2,
-  "rewrites": [
+  "builds": [
     {
-      "source": "/static/(.*)",
-      "destination": "/static/$1"
-    },
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.12"
+      }
+    }
+  ],
+  "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/api/index.py"
